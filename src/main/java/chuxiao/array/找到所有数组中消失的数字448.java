@@ -19,12 +19,27 @@ import java.util.List;
  * */
 public class 找到所有数组中消失的数字448 {
     public static void main(String[] args) {
-
+        int [] in ={4,3,2,7,8,2,3,1};
+        System.out.println(findDisappearedNumbers(in));
     }
-    public List<Integer> findDisappearedNumbers(int[] nums) {
+    public static List<Integer> findDisappearedNumbers(int[] nums) {
         List<Integer> res = new ArrayList<>();
+        for(int i = 0; i < nums.length; ){
+           // System.out.println(i+ " " + nums[i]);
+            if((nums[i] == (i + 1)) || (nums[i] == nums[nums[i] - 1])){
+                i++;
+            }else {
+                int tmp = nums[i];
+                nums [i] = nums [nums[i]-1];
+                nums [tmp -1] = tmp;
+            }
+        }
+        for (int i =0 ;i <nums.length;i++){
+            if(nums[i] != (i+1)){
+                res.add(i+1);
+            }
+        }
 
-        
         return  res;
     }
 }
