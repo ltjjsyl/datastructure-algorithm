@@ -22,7 +22,7 @@ import java.util.Map;
 public class 两数之和输入有序数组167 {
     public static void main(String[] args) {
         int [] in= {2, 2, 11, 15};
-        int [] result = twoSum(in,4);
+        int [] result = twoSum1(in,4);
         System.out.println(result);
         System.out.println(result[0]);
         System.out.println(result [1]);
@@ -39,6 +39,24 @@ public class 两数之和输入有序数组167 {
                 return res;
             }else {
                 stat.put(numbers[i], i);
+            }
+        }
+        return null;
+    }
+
+    public static int[] twoSum1(int[] numbers, int target) {
+        int start = 0;
+        int end = numbers.length - 1;
+        while (start < end) {
+            if(numbers [start] + numbers [end] > target){
+                end--;
+            }else if (numbers [start] + numbers [end] >target) {
+                start++;
+            }else {
+                int [] res = new int[2];
+                res[0] =start+1;
+                res[1] = end + 1;
+                return res;
             }
         }
         return null;
