@@ -6,7 +6,7 @@ package chuxiao.list;
 public class 合并两个有序链表21 {
 
     public static void main(String[] args) {
-
+        //链表之间存在关联关系
     }
 
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
