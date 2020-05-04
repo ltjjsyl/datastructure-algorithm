@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="datastructurealgorithm" />
+        <module name="datastructure-algorithm" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="datastructurealgorithm" target="8" />
+      <module name="datastructure-algorithm" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
