@@ -162,7 +162,7 @@ public class Array<E> {
         size--;
         data[size] = null; //loitering objects != memory leak
 
-        if (size == capacity / 2) {
+        if (size == capacity / 4 && capacity / 2 != 0) {
             resize(capacity / 2);
         }
         return ret;
