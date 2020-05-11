@@ -49,7 +49,7 @@ public class Main {
     public static void main(String[] args) {
 
         int opCount = 100000;
-        int times = 100;
+        int times = 10;
 
         double runTime1 = testQueueByTimes("arrayqueue", times, opCount);
         System.out.println("ArrayQueue: spend time: " + runTime1 + "s");
