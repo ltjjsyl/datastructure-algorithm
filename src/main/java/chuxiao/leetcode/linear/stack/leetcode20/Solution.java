@@ -1,8 +1,8 @@
-package chuxiao.leetcode.linear.stack;
+package chuxiao.leetcode.linear.stack.leetcode20;
 
 import java.util.Stack;
 
-public class Leetcode20 {
+public class Solution {
 
     public boolean isValid(String s) {
 
@@ -29,7 +29,6 @@ public class Leetcode20 {
             }
 
         }
-
 
         return stack.isEmpty();
     }
