@@ -42,7 +42,9 @@ public class Main {
         if (type.equalsIgnoreCase("loopqueue")) {
             return new LoopQueue<>();
         }
-
+        if (type.equalsIgnoreCase("linkedlistqueue")) {
+            return new LinkedListQueue<>();
+        }
         return null;
     }
 
@@ -57,6 +59,8 @@ public class Main {
         double runTime2 = testQueueByTimes("loopqueue", times, opCount);
         System.out.println("LoopQueue: spend time: " + runTime2 + "s");
 
-        System.out.println("LoopQueue fast than ArrayQueue : " + runTime1 / runTime2);
+        double runTime3 = testQueueByTimes("linkedlistqueue", times, opCount);
+        System.out.println("LinkedListQueue: spend time: " + runTime3 + "s");
+        //System.out.println("LoopQueue fast than ArrayQueue : " + runTime1 / runTime2);
     }
 }
