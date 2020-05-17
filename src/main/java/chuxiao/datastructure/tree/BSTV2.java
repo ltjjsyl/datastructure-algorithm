@@ -39,6 +39,36 @@ public class BSTV2<E extends Comparable<E>> {
 
         bst.postOrder();
         System.out.println();
+
+        System.out.println(bst.maximumNR());
+        System.out.println(bst.maximum());
+        System.out.println(bst.minimumNR());
+        System.out.println(bst.minimum());
+
+        int size = bst.size;
+        for (int i = 0; i < size; i++) {
+            System.out.print(bst.removeMin() + " ");
+        }
+
+        System.out.println();
+
+        for (int i = 0; i < nums.length; i++) {
+            bst.add(nums[i]);
+        }
+        size = bst.size;
+        for (int i = 0; i < size; i++) {
+            System.out.print(bst.removeMax() + " ");
+        }
+
+        System.out.println();
+        for (int i = 0; i < nums.length; i++) {
+            bst.add(nums[i]);
+        }
+        bst.remove(9);
+        System.out.println(bst);
+
+        bst.remove(4);
+        System.out.println(bst);
     }
 
     public int getSize() {
@@ -176,6 +206,158 @@ public class BSTV2<E extends Comparable<E>> {
         postOrder(node.right);
 
         System.out.println(node.e);
+    }
+
+    public E minimumNR() {
+
+        if (isEmpty()) {
+            throw new IllegalStateException("BST is empty.");
+        }
+
+        Node cur = root;
+
+        while (cur.left != null) {
+            cur = cur.left;
+        }
+        return cur.e;
+    }
+
+    public E minimum() {
+
+        if (isEmpty()) {
+            throw new IllegalStateException("BST is empty.");
+        }
+
+        return minimum(root).e;
+    }
+
+    //返回node为根的最小节点
+    private Node minimum(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+
+        return minimum(node.left);
+    }
+
+    public E maximumNR() {
+
+        if (isEmpty()) {
+            throw new IllegalStateException("BST is empty.");
+        }
+
+        Node cur = root;
+        while (cur.right != null) {
+            cur = cur.right;
+        }
+
+        return cur.e;
+    }
+
+    public E maximum() {
+
+        if (isEmpty()) {
+            throw new IllegalStateException("BST is empty.");
+        }
+
+        return maximum(root).e;
+    }
+
+    //返回node为根的最大节点
+    private Node maximum(Node node) {
+
+        if (node.right == null) {
+            return node;
+        }
+
+        return maximum(node.right);
+    }
+
+    public E removeMin() {
+
+        Node ret = minimum(root);
+        root = removeMin(root);
+        return ret.e;
+    }
+
+    //返回删除node为根的最小节点后的根
+    private Node removeMin(Node node) {
+
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    public E removeMax() {
+        Node ret = maximum(root);
+        root = removeMax(root);
+        return ret.e;
+    }
+
+    //返回删除node为根的最小节点后的根
+    private Node removeMax(Node node) {
+
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+
+        node.right = removeMax(node.right);
+        return node;
+    }
+
+    public void remove(E e) {
+        root = remove(root, e);
+    }
+
+    private Node remove(Node node, E e) {
+
+        if (node == null) {
+            return null;
+        }
+
+        if (e.compareTo(node.e) < 0) {
+            node.left = remove(node.left, e);
+            return node;
+        } else if (e.compareTo(node.e) > 0) {
+            node.right = remove(node.right, e);
+            return node;
+        } else {
+            //删除节点的左子树为空
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                return rightNode;
+            }
+
+            //删除的节点的右子树为空
+            if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                return leftNode;
+            }
+
+            //删除节点的左右节点都不为空
+            //找到比删除节点大的最小节点，即删除节点右子树的最小节点
+            //用这个节点顶替删除的节点
+            //使用前驱节点也可以
+            Node successor = minimum(node.right);//val同时要拿到
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+            node.left = null;
+            node.right = null;
+            return successor;
+        }
     }
 
     //前序遍历
