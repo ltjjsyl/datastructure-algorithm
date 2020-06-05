@@ -9,10 +9,18 @@ import java.util.Random;
  */
 public class MaxHeap<E extends Comparable<E>> {
 
-    private Array<E> data;
+    private final Array<E> data;
 
     public MaxHeap() {
         data = new Array<>();
+    }
+
+    public MaxHeap(E[] arr) {
+
+        data = new Array<>(arr);
+        for (int i = parent(arr.length - 1); i >= 0; i--) {
+            siftDown(i);
+        }
     }
 
     public MaxHeap(int capacity) {
@@ -20,13 +28,19 @@ public class MaxHeap<E extends Comparable<E>> {
     }
 
     public static void main(String[] args) {
-        int n = 100;
+        int n = 1000000;
         MaxHeap<Integer> maxHeap = new MaxHeap<>(n);
 
         Random random = new Random();
         for (int i = 0; i < n; i++) {
-            maxHeap.add(random.nextInt(100));
+            maxHeap.add(random.nextInt(Integer.MAX_VALUE));
         }
+        System.out.println(maxHeap.replace(3));
+        System.out.println(maxHeap.replace(1000));
+        System.out.println(maxHeap.replace(1000));
+        System.out.println(maxHeap.replace(1000));
+        System.out.println(maxHeap.replace(1000));
+        System.out.println(maxHeap.replace(1000));
         System.out.println("=======================");
         int[] res = new int[n];
         for (int i = 0; i < n; i++) {
@@ -52,7 +66,6 @@ public class MaxHeap<E extends Comparable<E>> {
     public void add(E e) {
         data.addLast(e);
         siftUp(data.getSize() - 1);
-        System.out.println(data);
     }
 
     private void siftUp(int k) {
@@ -76,7 +89,14 @@ public class MaxHeap<E extends Comparable<E>> {
         data.swap(0, data.getSize() - 1);
         data.removeLast();
         siftDown(0);
-        System.out.println(data);
+        return ret;
+    }
+
+    public E replace(E e) {
+
+        E ret = findMax();
+        data.set(0, e);
+        siftDown(0);
         return ret;
     }
 

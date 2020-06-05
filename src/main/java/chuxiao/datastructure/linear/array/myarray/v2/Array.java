@@ -1,6 +1,5 @@
 package chuxiao.datastructure.linear.array.myarray.v2;
 
-
 /**
  * 数组包装类
  */
@@ -14,6 +13,17 @@ public class Array<E> {
     //无参构造函数，默认容量为10
     public Array() {
         this(DEFAULT_CAPACITY);
+    }
+
+    public Array(E[] arr) {
+
+        capacity = arr.length;
+        data = (E[]) new Object[capacity];
+        for (int i = 0; i < arr.length; i++) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
+
     }
 
     //构造函数，传入参数数组容量
