@@ -36,6 +36,35 @@ public class SegmentTree<E> {
         this.tree[treeIndex] = merger.merge(this.tree[leftTreeIndex], this.tree[rightTreeIndex]);
     }
 
+    //更新线段树index位置的值为e
+    public void set(int index, E e) {
+
+        if (index < 0 || index >= data.length) {
+            throw new IllegalArgumentException("Index is illegal");
+        }
+        data[index] = e;
+        set(0, 0, data.length - 1, index, e);
+    }
+
+    //在以treeIndex在以treeIndex为根的线段树中[l...r]的范围里更新index位置的值为e
+    private void set(int treeIndex, int l, int r, int index, E e) {
+
+        if (l == r) {
+            tree[treeIndex] = e;
+            return;
+        }
+
+        int mid = l + (r - l) / 2;
+        int leftTreeIndex = leftChild(treeIndex);
+        int rightTreeIndex = rightChild(treeIndex);
+        if (index >= mid + 1) {
+            set(rightTreeIndex, mid + 1, r, index, e);
+        } else {
+            set(leftTreeIndex, l, mid, index, e);
+        }
+
+        tree[treeIndex] = merger.merge(tree[leftTreeIndex], tree[rightTreeIndex]);
+    }
 
     // 返回区间[queryL, queryR]的值
     public E query(int queryL, int queryR) {

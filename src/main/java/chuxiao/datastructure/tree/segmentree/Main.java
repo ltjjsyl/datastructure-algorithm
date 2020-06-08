@@ -17,5 +17,10 @@ public class Main {
         System.out.println(segTree.query(0, 2));
         System.out.println(segTree.query(1, 2));
         System.out.println(segTree.query(0, 5));
+
+        segTree.set(3, 6);
+        System.out.println(segTree.query(0, 2));
+        System.out.println(segTree.query(1, 2));
+        System.out.println(segTree.query(0, 5));
     }
 }
