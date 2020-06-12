@@ -1,4 +1,4 @@
-package chuxiao.datastructure.hashtable;
+package chuxiao.datastructure.tree.trie;
 
 import java.io.BufferedInputStream;
 import java.io.File;

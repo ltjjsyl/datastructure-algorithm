@@ -1,4 +1,4 @@
-package chuxiao.datastructure.hashtable;
+package chuxiao.datastructure.linear.hashtable;
 
 import java.util.ArrayList;
 import java.util.TreeMap;

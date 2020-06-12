@@ -1,4 +1,4 @@
-package chuxiao.leetcode.hashtable.leetcode387;
+package chuxiao.leetcode.linear.hashtable.leetcode387;
 
 class Solution {
     public int firstUniqChar(String s) {
